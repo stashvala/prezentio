@@ -530,3 +530,6 @@ paket-files/
 # End of https://www.gitignore.io/api/osx,pydev,linux,python,pycharm,windows,visualstudio,visualstudiocode
 # mypy
 .mypy_cache/
+*.jpg
+*.png
+*.gif
