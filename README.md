@@ -6,6 +6,10 @@ Control your presentation with alternative methods
 install python-opencv, pygame, numpy, scipy, simplecv
 ```
 
+```bash
+install pyautogui, http
+```
+
 Go to [http://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv](http://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv) and download opencv prebuilt whl for your version of python.
 Then run:
 ```bash
