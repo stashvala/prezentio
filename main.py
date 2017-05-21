@@ -101,11 +101,6 @@ if __name__ == '__main__':
             history = []
 
         for (x, y, w, h) in hands:
-            if detected == 0:
-                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            else:
-                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 0), 2)
-
             if start == 0:
                 start = time.time()
 
@@ -138,6 +133,11 @@ if __name__ == '__main__':
 
                 if do_overlap((x, y), (x + w, y + h), (avgfacex, avgfacey), (avgfacex + avgfacew, avgfacey + avgfaceh)):
                     continue
+
+                if detected == 0:
+                    cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                else:
+                    cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 0), 2)
 
                 if detected == 0:
                     if avgy < avgfacey:
