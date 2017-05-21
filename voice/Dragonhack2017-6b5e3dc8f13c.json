@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dragonhack2017",
+  "private_key_id": "6b5e3dc8f13c727a1a5f1cd354e1d8541ec7cdae",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCpWdyhSqBBsdTM\nszgfOpX+YINH0eJhMvafwB9USjOoxjbbBMnFpmxMao1RXqrOkq942j7PIjOP8nHI\ng3eP2WGsbk444oE6fUHDrG0VCTLTs/bE2ZjWNk9eND9Rum0T5Wl5MsrrSorQzMxq\nbwRkDFb64KKogC73zS+bGcYORFLkcvW+jIdJlgw6VBUCqP88YzB2tjfMvqJi+xcn\nKPBNh8JA3bFAgYz8pvSpZgCApixGgh7zGn33gbbu5mJLQZ+Ejegr0i/bsNIZOugV\nixw4QdYSUaGGuK1LzeCQetWpMMyrfmXmCQM11AK2d29ZSG8gFo5TBL1rFd3Ht7WO\nWfJJ73vrAgMBAAECggEACCzk08ObKyYNeA4YmtI54T/XD3r4YEzb+bZNTOGB65c2\nCrizyVf8EDNwLbTDkplcb6gCa1QcBDwQrwPPDgUmfboNfDZqKODnHBGRThSq7s+f\nRku4NjnME4ReLpuic4OoV51EVEm9nAkRoom56aYW2i/XTe1VyOWPj+NAMRbK2L6W\nGVmU5Ls/kBOMlPpkd+EeyZbc7gABx1AI2wviJyDyT6PnmdinXLEpCNWZVUr+7Mel\nDyu+KrIPlg2LbMgvlEsp0dpG03lk4HfVbEP0ttkTI9F8Hyo/E/AgjSSU7OzAWFOU\nq/HS/pNOkJyw4HIxGpG75DvuTxMYc2prMiOhg8ulkQKBgQDWXGCz2k0nF6KxyTbK\nm3uRkXpl6n5JKQ4PvkTUhVDMH17oX1EiwtBKQhkr5Qi2NIGa/L2PLWfDexHaVRAv\ng0ZoU88z7dBXg+y0ZmOHq6kCd3/KSWCfM+R5Ci2it5ydOY9DcyrcMJV10wpjG2/H\n+etYhLNUasRzd7krQ2o9YnNgXQKBgQDKP0JkCHld6q5ZdC8k5A/z6FrQSRnCtK51\nVPrZBoVZ85uCIBXLcyy126jvavLx2pdo42+LB5Q8svqfL2MgarcwrgR5vyTC7ucf\nsu1QPryqEU1OK15rNCcc1dlgNOQeD1AG6/fA9lA92VzaICUFITpilP1t78mWPEU2\nE7iDl4ko5wKBgHiaMK3/vDiqS5bLJlCHedZEiyCb9cEjoA2rdv46o2K0o6kJN5Tf\nFmExHwhbK7OXhvO0DtJnMWIB8+Fqylhw+0PnI0SMIBOc3agBky3ZnpUMtpERB5OK\nlpii6VoLA8pRgBDq0spfazeHLOjlntZb/dUnk92C1FRCn6N/ol427cLhAoGBALqV\nI72/p6BCOrjiHAAvupvtd6KCXhans+8hCA8iGfJDcOraiODaD5xy2uaNxzXi0R59\n/FDKHDLnd5lWEWA9s2VglVZwRgzkdCtlWdRXHJzVO3lrPz8trQvIKjO8d9tXix/n\nn/jQBHUay7OcRir2XbPG+grrVhGY5s0d4nLcYThvAoGBALyTym8ZdrnghQ3BQAv8\ng1sP/u6ROfhhmj71txNp9SHy0Ry750nLx453OajxZLF5F98hrQoYYx/1qqBCX45K\nayYGNkpK5vVirowz3wiJLoi/TbxsZIm9d5slkqsT3izHdh80ESG7v76nLmPZfCAl\nh+TBZXueCmYB1gdk49HoC1AZ\n-----END PRIVATE KEY-----\n",
+  "client_email": "dragonhack2017@dragonhack2017.iam.gserviceaccount.com",
+  "client_id": "114864475251344263064",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dragonhack2017%40dragonhack2017.iam.gserviceaccount.com"
+}
