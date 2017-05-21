@@ -2,6 +2,44 @@ import cv2
 import time
 import collections
 import pyautogui as pag
+import numpy as np
+
+def get_holes(image, thresh):
+    gray = image
+
+    im_bw = cv2.threshold(gray, thresh, 255, cv2.THRESH_BINARY)[1]
+    im_bw_inv = cv2.bitwise_not(im_bw)
+
+    contour = cv2.findContours(im_bw_inv, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    contour = contour[0]
+
+    nt = cv2.bitwise_not(im_bw)
+    im_bw_inv = cv2.bitwise_or(im_bw_inv, nt)
+    return im_bw_inv
+
+
+def remove_background(image, thresh, scale_factor=.25, kernel_range=range(1, 15), border=None):
+    border = border or kernel_range[-1]
+
+    holes = get_holes(image, thresh)
+    small = cv2.resize(holes, None, fx=scale_factor, fy=scale_factor)
+    bordered = cv2.copyMakeBorder(small, border, border, border, border, cv2.BORDER_CONSTANT)
+
+    for i in kernel_range:
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2*i+1, 2*i+1))
+        bordered = cv2.morphologyEx(bordered, cv2.MORPH_CLOSE, kernel)
+
+    unbordered = bordered[border: -border, border: -border]
+    mask = cv2.resize(unbordered, (image.shape[1], image.shape[0]))
+    fg = cv2.bitwise_and(image, image, mask=mask)
+    return fg
+
+def edgedetect (channel):
+    sobelX = cv2.Sobel(channel, cv2.CV_16S, 1, 0)
+    sobelY = cv2.Sobel(channel, cv2.CV_16S, 0, 1)
+    sobel = np.hypot(sobelX, sobelY)
+
+    sobel[sobel > 255] = 255; # Some values seem to go above 255. However RGB channels has to be within 0-255
 
 if __name__ == '__main__':
     print("Start")
@@ -19,10 +57,12 @@ if __name__ == '__main__':
     detected = 0
 
     face_queue = collections.deque(maxlen=10)
-
     while True:
         return_value, image = camera.read()
+        image = cv2.GaussianBlur(image, (5, 5), 0)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        #gray = remove_background(gray, 230)
 
         hands = hand_cascade.detectMultiScale(gray, 1.3, 5)
 
