@@ -12,7 +12,7 @@ if __name__ == '__main__':
     camera = cv2.VideoCapture(0)
 
     time_thresh = 1
-    hist_thresh = 10
+    hist_thresh = 8
 
     start = 0
     history = []
@@ -39,7 +39,10 @@ if __name__ == '__main__':
             history = []
 
         for (x, y, w, h) in hands:
-            cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            if detected == 0:
+                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            else:
+                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 0), 2)
 
             if start == 0:
                 start = time.time()
@@ -55,12 +58,21 @@ if __name__ == '__main__':
 
                 avgfacex = 0
                 avgfacey = 0
+                avgfacew = 0
+                avgfaceh = 0
                 for i in face_queue:
                     avgfacex += i[0]
                     avgfacey += i[1]
+                    avgfacew += i[2]
+                    avgfaceh += i[3]
+
+                avgfacex /= len(face_queue)
+                avgfacey /= len(face_queue)
+                avgfacew /= len(face_queue)
+                avgfaceh /= len(face_queue)
 
                 if detected == 0:
-                    if avgx < avgfacex:
+                    if avgy < avgfacey:
                         detected = 1
                         print("r")
                     else:
@@ -72,8 +84,8 @@ if __name__ == '__main__':
 
         face = face_cascade.detectMultiScale(gray, 1.3, 5)
         for (x2, y2, w2, h2) in face:
-            cv2.rectangle(image, (x2, y2), (x2 + w2, y2 + h2), (0, 255, 0), 2)
-            face_queue.append([x2, y2])
+            cv2.rectangle(image, (x2, y2), (x2 + w2, y2 + h2), (0, 0, 255), 2)
+            face_queue.append([x2, y2, w2, h2])
 
         cv2.imshow('image', image)
         if cv2.waitKey(1) & 0xFF == ord('s'):
