@@ -4,6 +4,15 @@ import collections
 import pyautogui as pag
 import numpy as np
 
+def do_overlap(l1, r1, l2, r2):
+    if l1[0] > r2[0] or l2[0] > r1[0]:
+        return False
+
+    if l1[1] < r2[1] or l2[1] < r1[1]:
+        return False
+
+    return True
+
 def get_holes(image, thresh):
     gray = image
 
@@ -119,6 +128,16 @@ if __name__ == '__main__':
                     avgfacew += i[2]
                     avgfaceh += i[3]
 
+
+                xxl = len(face_queue)
+                if xxl > 0:
+                    avgfacex /= xxl
+                    avgfacey /= xxl
+                    avgfacew /= xxl
+                    avgfaceh /= xxl
+
+                if do_overlap((x, y), (x + w, y + h), (avgfacex, avgfacey), (avgfacex + avgfacew, avgfacey + avgfaceh)):
+                    continue
 
                 if detected == 0:
                     if avgy < avgfacey:
