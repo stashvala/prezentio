@@ -56,12 +56,23 @@ if __name__ == '__main__':
     history = []
     detected = 0
 
+    # Constants for finding range of skin color in YCrCb
+    min_YCrCb = np.array([0, 133, 77], np.uint8)
+    max_YCrCb = np.array([255, 173, 127], np.uint8)
+
     face_queue = collections.deque(maxlen=10)
     while True:
         return_value, image = camera.read()
-        image = cv2.GaussianBlur(image, (5, 5), 0)
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image = cv2.GaussianBlur(image, (7, 7), 1.5, 1.5)
 
+        imageYCrCb = cv2.cvtColor(image, cv2.COLOR_BGR2YCR_CB)
+
+        # Find region with skin tone in YCrCb image
+        skinRegion = cv2.inRange(imageYCrCb, min_YCrCb, max_YCrCb)
+
+        image = cv2.bitwise_and(image, image, mask=skinRegion)
+        image[skinRegion == 0] = [255, 255, 255]
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         #gray = remove_background(gray, 230)
 
         hands = hand_cascade.detectMultiScale(gray, 1.3, 5)
@@ -106,10 +117,6 @@ if __name__ == '__main__':
                     avgfacew += i[2]
                     avgfaceh += i[3]
 
-                avgfacex /= len(face_queue)
-                avgfacey /= len(face_queue)
-                avgfacew /= len(face_queue)
-                avgfaceh /= len(face_queue)
 
                 if detected == 0:
                     if avgy < avgfacey:
