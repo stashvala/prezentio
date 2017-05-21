@@ -63,7 +63,9 @@ if __name__ == '__main__':
     face_queue = collections.deque(maxlen=10)
     while True:
         return_value, image = camera.read()
+        imgraw = image
         image = cv2.GaussianBlur(image, (7, 7), 1.5, 1.5)
+        gray_face = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         imageYCrCb = cv2.cvtColor(image, cv2.COLOR_BGR2YCR_CB)
 
@@ -129,12 +131,13 @@ if __name__ == '__main__':
             else:
                 history.append([x, y])
 
-        face = face_cascade.detectMultiScale(gray, 1.3, 5)
+        face = face_cascade.detectMultiScale(gray_face, 1.3, 5)
         for (x2, y2, w2, h2) in face:
             cv2.rectangle(image, (x2, y2), (x2 + w2, y2 + h2), (0, 0, 255), 2)
             face_queue.append([x2, y2, w2, h2])
 
         cv2.imshow('image', image)
+        cv2.imshow('imgraw', imgraw)
         if cv2.waitKey(1) & 0xFF == ord('s'):
             break
 
